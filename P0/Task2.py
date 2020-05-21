@@ -20,7 +20,7 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during 
 September 2016.".
 """
-# morph given list into dictionary for easier access / indexing
+# change given list into dictionary for easier access / indexing
 # assisted by https://www.geeksforgeeks.org/python-dictionary/
 def total_time(call):
     screen_time = {}
