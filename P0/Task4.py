@@ -24,6 +24,7 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
+#Pass through list to remove duplicates, then iterate to isolate possible telemarketers, then use not in iteration to reveal possible telemarketers
 def possible_telemarketers(call, text):
     call_sender = list(set([details[0] for details in call]))
     call_receiver = list(set([details[1] for details in call]))
@@ -42,5 +43,5 @@ def possible_telemarketers(call, text):
 marketers = possible_telemarketers(calls, texts)
 
 print("These numbers could be telemarketers: ")
-for ph_num in marketers:
-    print(ph_num)
+for num in marketers:
+    print(num)

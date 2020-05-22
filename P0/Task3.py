@@ -43,44 +43,46 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
-def find_unique_codes(bangalore_callers):
-    codes = []
+#Part A solution
+#Use list iteration technique from Task 1 to create area code list
+def list_of_codes(bgcallers):
+    area_codes = []
 
-    for users in bangalore_callers:
+    for users in bgcallers:
 
         receiver = users[1]
 
         if receiver[:2] == '(0':
-            codes.append(receiver[1:4])
+            area_codes.append(receiver[1:4])
 
         if receiver[:3] == '140':
-            codes.append('140')
+            area_codes.append('140')
 
         if receiver[0] == '7' or receiver[0] == '8' or receiver[0] == '9':
-            codes.append(receiver[:4])
+            area_codes.append(receiver[:4])
 
-    unique_code = sorted(list(set(codes)))
+    unique_code = sorted(list(set(area_codes)))
 
     return unique_code
 
 
-# part 2 solution
+# Part B solution
 
-def percentage_receiver(bangalore_callers):
-    bangalore_receiver = [user[1] for user in bangalore_callers if user[1][:5] == '(080)']
+def percentage_receiver(bgcallers):
+    bg_pickup = [user[1] for user in bgcallers if user[1][:5] == '(080)']
 
-    percentage = len(bangalore_receiver) / len(bangalore_callers) * 100
+    percentage = len(bg_pickup) / len(bgcallers) * 100
 
     return percentage
 
 
-bangalore_caller = [[details[0], details[1]] for details in calls if details[0][:5] == '(080)']
+bg_callers = [[details[0], details[1]] for details in calls if details[0][:5] == '(080)']
 
-unique_codes = find_unique_codes(bangalore_caller)
+unique_codes = list_of_codes(bg_callers)
 
 print("The numbers called by people in Bangalore have codes:")
 for ph_code in unique_codes:
     print(ph_code)
 
-percentages = percentage_receiver(bangalore_caller)
+percentages = percentage_receiver(bg_callers)
 print("\n{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentages))
