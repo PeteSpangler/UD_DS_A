@@ -21,7 +21,7 @@ Print a message:
 September 2016.".
 """
 # change given list into dictionary for easier access / indexing / not in iteration
-# assisted by https://www.geeksforgeeks.org/python-dictionary/
+# assisted by https://www.geeksforgeeks.org/python-dictionary/ 
 def screen_time():
     call_time = {}
     for call in calls:

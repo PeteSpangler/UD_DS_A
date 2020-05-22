@@ -75,7 +75,7 @@ def percentage_receiver(bgcallers):
 
     return percentage
 
-
+ 
 bg_callers = [[details[0], details[1]] for details in calls if details[0][:5] == '(080)']
 
 unique_codes = list_of_codes(bg_callers)

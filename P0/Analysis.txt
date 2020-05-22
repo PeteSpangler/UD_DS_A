@@ -9,7 +9,7 @@ Task 2 worst case time complexity is also O(n) because it simplifies down to tha
 but no squares or log n functions to speed it up or slow it down.
 
 Task 3 worst case time complexity simplifies down to O(n log n) due to use of the sorted function, all other
-functions and operations have run time of O(1) or O(n).
+functions and operations have run time of O(1) or O(n). 
 
 Task 4 worst case time complexity is roughly the same as Task 3. Another sorted function call bumps this up 
 to O(n log n) and all other functions and operations have run time of O(1) or O(n).

@@ -39,7 +39,7 @@ def possible_telemarketers(call, text):
 
     return sorted(telemarketers)
 
-
+ 
 marketers = possible_telemarketers(calls, texts)
 
 print("These numbers could be telemarketers: ")
