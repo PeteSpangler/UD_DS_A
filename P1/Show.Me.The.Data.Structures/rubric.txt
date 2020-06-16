@@ -1,0 +1,42 @@
+Show Me The Data Structures
+
+Code
+
+CRITERIA
+MEETS SPECIFICATIONS
+Correctness
+
+Code produces the correct solution to the question. There are also no runtime or compile time errors.
+
+Style
+
+Code is neat and easy-to-read. Variables, functions, and methods have straightforward names. There is enough spacing that code is easily readable.
+
+Simplicity
+
+Code solution is not unnecessarily complex—it accomplishes the task at hand without extra iterating, algorithms, data structures, et cetera.
+
+Testing
+
+CRITERIA
+MEETS SPECIFICATIONS
+Test Cases
+
+At least three test inputs and outputs are provided. There are at least two that test for edge cases, like null or empty inputs, or very large numbers.
+
+Explanation
+
+CRITERIA
+MEETS SPECIFICATIONS
+Efficiency
+
+There is a clear and accurate statement of efficiency in time and space. There is an explanation that specifically mentions parts of the code that contribute to the overall efficiency.
+
+Code Design
+
+Explanation contains some discussion of design choices made in the code. Some examples include the choice of algorithm and data structure.
+
+Readability
+
+Explanation is written with proper English. Wording is clear and easy to understand. It’s okay to make a couple mistakes, but thoughts should be clearly expressed overall.
+
