@@ -28,47 +28,42 @@ For the current problem, you can consider the size of cache = 5.
 Here is some boiler plate code and some example test cases to get you started on this problem:
 
 """
-class Node:
-    def __init__(self, key = None, val = None):
-        self.key = key
-        self.val = val
-        self.prev, self.next = None, None
+from collections import OrderedDict
 
 class LRU_Cache:
 
     def __init__(self, capacity):
         self.capacity = capacity
-        self.cache = {}
-        self.head, self.tail = Node(), Node()
-        self.head.next, self.tail.prev = self.tail, self.head
+        self.cache = OrderedDict()
+
 
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
-        if key in self.cache:
-            val = self.cache[key].val
-            self.remove(key)
-            self.put(key, val)
-            return val
-        else:
+        try:
+            value = self.cache.pop(key)
+            self.cache[key] = value
+            return value
+
+        except KeyError:
             return -1
 
     def put(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
+        if self.capacity == 0:
+            print("No can do, cache is empty")
+            return
+        
         if key in self.cache:
-            self.remove(key)
-            self.put(key, val)
-        else:
-            if len(self.cache) >= self.capacity:
-                self.remove(self.head.next.key)
-            new_node = Node(key, val)
-            new_node.prev, new_node.next = self.tail.prev, self.tail
-            new_node.prev.next, new_node.next.prev = new_node, new_node
-            self.cache[key] = new_node
+            self.cache.pop(key)
+            self.cache[key] = value
 
-    def remove(self, key):
-        node = self.cache[key]
-        node.prev.next, node.next.prev = node.next, node.prev
-        self.cache.pop(key)
+        else:
+            if len(self.cache) < self.capacity:
+                self.cache[key] = value
+
+            else:
+                self.cache.popitem(last=False)
+                self.cache[key] = value
 
 our_cache = LRU_Cache(5)
 
@@ -78,11 +73,11 @@ our_cache.put(3, 3);
 our_cache.put(4, 4);
 
 
-our_cache.get(1)       # returns 1
-our_cache.get(2)       # returns 2
-our_cache.get(9)      # returns -1 because 9 is not present in the cache
+print(our_cache.get(1))       # returns 1
+print(our_cache.get(2))       # returns 2
+print(our_cache.get(9))      # returns -1 because 9 is not present in the cache
 
 our_cache.put(5, 5) 
 our_cache.put(6, 6)
 
-our_cache.get(3)      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
