@@ -33,3 +33,18 @@ def find_files(suffix, path):
     Returns:
        a list of paths
 """
+print('-----------------TEST1-------------------')
+paths_list = []
+print(find_files('c', 'testdir'))
+
+print('-----------------TEST-2-------------------')
+paths_list = []
+print(find_files('c', 'testdir2')) #returns empty because there is no *.c file in the directory `testdir2`
+
+print('-----------------TEST-3-------------------')
+paths_list = []
+print(find_files('c', 'testdir3'))#returns testdir3/subdir1/subdir2/huffman.c
+
+print('-----------------TEST-4-------------------')
+paths_list = []
+print(find_files('c', 'testdir4'))#returns error message saying path doesn't exist.
