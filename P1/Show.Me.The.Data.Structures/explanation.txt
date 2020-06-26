@@ -1,11 +1,20 @@
 Problem 1
+Imported "OrderedDict" function from Collections module because it is a dictionary that remembers the order that items are added/inserted, 
+which allows for O(1) lookup/insertion/deletion. Space complexity is O(n), no additional storage needed for solution. 
+Source: https://docs.python.org/3/library/collections.html#collections.OrderedDict 
 
 Problem 2
 
 Problem 3
 
 Problem 4
+This problem is best solved with recursion, which can cause the space complexity to rise, but in this case it is constant space.
+For time, it is dependant on the number of groups and users, so O(groups * users).  
 
 Problem 5
+This is a linked list solution with a pointer at the head and tail, so adding/insertion at the tail 
+is O(1) in time, and space complexity is O(n).
 
 Problem 6
+Linked Lists with creation of separate linked list for union/intersection linked lists.
+Intersection and Union Linked Lists have space and time complexity of O(n).
