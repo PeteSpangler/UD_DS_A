@@ -1,31 +1,35 @@
 import os
 
-def find_files(suffix, path, files=[]):
-    """
-    Find all files beneath path with file name suffix.
-    Note that a path may contain further subdirectories
-    and those subdirectories may also contain further subdirectories.
-    There are no limit to the depth of the subdirectories can be.
-    Args:
-      suffix(str): suffix if the file name to be found
-      path(str): path of the file system
-    Returns:
-       a list of paths
-    """
-    temp = suffix
-    if path:
-        temp = suffix + '/' + path
-    for f in os.listdir(temp):
-        temp1 = temp +  '/' + f
-        #print(f)
-        if os.path.isfile(temp1) and temp1.endswith(".c"):
-            files.append(temp1)
-            #print(temp1)
+def find_files(suffix, path):
+    if path is None:
+        return "You forgot to input a path"
+    elif not isinstance(path, str):
+        return "Double check your path input"
 
-        elif os.path.isdir(temp1):
-            files = find_files(temp, f, files)
+    files = []
+
+    for file in os.listdir(path):
+
+        file_path = os.path.join(path, file)
+
+        if os.path.isfile(file_path):
+            if file.endswith(suffix):
+                files.append(file_path)
+
+        if os.path.isdir(file_path):
+            new_files = find_files(suffix, file_path)
+            files.extend(new_files)
+
     return files
 
-print(find_files('.', 'testdir'))
-print(find_files('.', ''))
-print(find_files('.', 'testdir/subdir3'))
+
+
+
+# General test cases
+print(find_files(".h", "."))
+print(find_files(".c", "."))
+print(find_files(".gitkeep", "."))
+
+#Edge cases
+print(find_files('', None))
+print(find_files('', 23)) #GOAT

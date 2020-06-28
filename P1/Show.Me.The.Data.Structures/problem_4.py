@@ -30,13 +30,6 @@ child.add_group(sub_child)
 parent.add_group(child)
 
 def is_user_in_group(user, group):
-    """
-    Return True if user is in the group, False otherwise.
-    Args:
-      user(str): user name/id
-      group(class:Group): group to check user membership against
-    """
-
     if user in group.get_users():  
         return True
     else:
@@ -50,18 +43,10 @@ def is_user_in_group(user, group):
                     return True
     return False
 
-# Normal Case testing
 
 print(is_user_in_group(user='parent_user', group=parent))
-# False
-print(is_user_in_group(user='child_user', group=parent))
-# False
-print(is_user_in_group(user='sub_child_user', group=parent), '\n')
-# True
-
-# Edge Case testing
+print(is_user_in_group(user='child_user', group=child))
+print(is_user_in_group(user='sub_child_user', group=parent))
 
 print(is_user_in_group(user='', group=parent))
-# False
 print(is_user_in_group(user='', group=child))
-# False

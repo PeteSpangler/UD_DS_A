@@ -1,4 +1,3 @@
-from collections import defaultdict
 import sys
 
 
@@ -48,9 +47,13 @@ def huffman_decoding(data, tree):
 
 
 def get_characters_frequencies(string):
-    frequencies = defaultdict(int)
+    frequencies = {}
     for char in string:
-        frequencies[char] += 1
+        if char in frequencies:
+            frequencies[char] += 1
+        else:
+            frequencies[char] = 1
+    
     return sorted(frequencies.items(), key=lambda item: item[1])
 
 
@@ -138,18 +141,14 @@ if __name__ == "__main__":
 
     encoded_data, tree = huffman_encoding(empty_sentence)
     print(encoded_data)
-    # should return empty string
 
     decoded_data = huffman_decoding(encoded_data, tree)
     print(decoded_data)
-    # decoded data should also be empty string
 
-    only_one_letter_sentence = "AAAAAAAAAA"
+    two_letter_sentence = "JAJAJAJAJAJAJA"
 
-    encoded_data, tree = huffman_encoding(only_one_letter_sentence)
+    encoded_data, tree = huffman_encoding(two_letter_sentence)
     print(encoded_data)
-    # should return empty string
 
     decoded_data = huffman_decoding(encoded_data, tree)
     print(decoded_data)
-    # decoded data should be "AAAAAAAAAA"

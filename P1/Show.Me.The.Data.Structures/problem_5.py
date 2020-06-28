@@ -10,9 +10,13 @@ class Block:
 
     def calc_hash(self, data):
       sha = hashlib.sha256()
-      hash_str = data.encode('utf-8')
+      hash_str = data.encode("utf-8")
       sha.update(hash_str)
       return sha.hexdigest()
+
+def get_utc_time():
+      utc = datetime.datetime.utcnow()
+      return utc.strftime("%d/%m/%Y %H:%M:%S")
 
 class LinkedList:
     def __init__(self):
@@ -28,21 +32,20 @@ class LinkedList:
             self.last = Block(timestamp, data, temp)
             self.last.previous_hash = temp
 
-def get_utc_time():
-      utc = datetime.datetime.utcnow()
-      return utc.strftime("%d/%m/%Y %H:%M:%S")
 
-block0 = Block(get_utc_time(), "Some Information", 0)
-block1 = Block(get_utc_time(), "Another Information", block0)
-block2 = Block(get_utc_time(), "Some more Information", block1)
 
-print(block0.data)
-print(block0.hash)
-print(block0.timestamp)
-print(block1.previous_hash.data)
+blockA = Block(get_utc_time(), "Michael Jordan", 0)
+blockB = Block(get_utc_time(), "Is the", blockA)
+blockC = Block(get_utc_time(), "GOAT", blockB)
+
+print(blockA.data)
+print(blockA.hash)
+print(blockA.timestamp)
+print(blockB.data)
+print(blockC.data)
 
 temp = LinkedList()
-temp.append(get_utc_time(), "Some Information")
-temp.append(get_utc_time(), "Another Information")
+temp.append(get_utc_time(), "or anyone else")
+temp.append(get_utc_time(), "not Lebron")
 print(temp.last.data)
 print(temp.last.previous_hash.data)

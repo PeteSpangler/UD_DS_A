@@ -38,8 +38,8 @@ class LinkedList:
             node = node.next
 
     def contains(self, value):
-        for Rvalue in self.values():
-            if value == Rvalue:
+        for maybe_val in self.values():
+            if value == maybe_val:
                 return True
         return False
 
