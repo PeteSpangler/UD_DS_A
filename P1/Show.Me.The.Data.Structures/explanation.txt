@@ -1,6 +1,7 @@
 Problem 1
 Imported "OrderedDict" function from Collections module because it is a dictionary that remembers the order that items are added/inserted, 
-which allows for O(1) lookup/insertion/deletion. Space complexity is O(n), no additional storage needed for solution. 
+which allows for O(1) lookup/insertion/deletion. Space complexity is O(2n) because it is a hash table and needs to keep track of a key and value pair,
+so for each value inserted into the cache it needs to hold the key as well. 
 Source: https://docs.python.org/3/library/collections.html#collections.OrderedDict 
 
 Problem 2
@@ -8,7 +9,9 @@ This problem is best solved with recursion, which  causes the space complexity t
 For time, it is dependant on the number of directories and files, so O(directories * files).  
 
 Problem 3
-Huffman algorithm has a time complexity of O(nlogn), and space complexity for this tree is O(k) where k = # of symbols in the encoded data.
+This is a data compression question, which suggests the use of the Huffman algorithm, which is implemented with a tree data structure.
+Huffman algorithm has a time complexity of O(nlogn) where determining the frequency of the char(s) and sorting them into the tree is (log n), and "decoding" the tree is 
+and O(n) operation, so combined it is O(n log n) and space complexity for this tree is O(k) where k = # of symbols in the encoded data.
 Source: https://www.programiz.com/dsa/huffman-coding. 
 
 Problem 4
@@ -17,9 +20,9 @@ For time, it is dependant on the number of groups and users, so O(groups * users
 
 Problem 5
 Blockchain implemented with a linked list  with a pointer at the head and tail, so adding at the tail 
-is O(1) in time and not O(n), and space complexity is O(n).
+is O(1) in time and not O(n), and space complexity is O(n), where n = # of blocks added to the linked list.
 
 Problem 6
 Linked Lists were the obvious choice after reading the instructions for this
-question. The creation of separate linked list for union/intersection linked lists
-have space and time complexity of O(n).
+question. The creation of a new linked list for union has two for loops, which means a time complexity of O(2n) which simplifies to O(n). 
+The space complexity for Union and Intersection are both roughly O(n + duplicates within n) because a new list is created.

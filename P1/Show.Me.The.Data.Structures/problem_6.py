@@ -104,3 +104,15 @@ for i in element_2:
 
 print (union(linked_list_3,linked_list_4))
 print (intersection(linked_list_3,linked_list_4))
+
+#edge cases
+linked_list_5 = LinkedList()
+element_3 = []
+for i in element_3:
+    linked_list_5.append(i)
+
+print(union(linked_list_1, linked_list_5))
+print(intersection(linked_list_3, linked_list_5))
+
+print(union(linked_list_5, linked_list_5))
+print(intersection(linked_list_5, linked_list_5))

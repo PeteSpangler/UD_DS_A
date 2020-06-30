@@ -33,6 +33,14 @@ class LinkedList:
             self.last.previous_hash = temp
 
 
+#Edge cases
+blockD = Block((), "", 0)
+print(blockD.data)
+print(blockD.hash)
+test= LinkedList()
+test.append(get_utc_time(), blockD.data)
+test.append(get_utc_time(), blockD.hash)
+print(test)
 
 blockA = Block(get_utc_time(), "Michael Jordan", 0)
 blockB = Block(get_utc_time(), "Is the", blockA)
