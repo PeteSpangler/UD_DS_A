@@ -1,21 +1,4 @@
-"""
-Search in a Rotated Sorted Array
-You are given a sorted array which is rotated at some random pivot point.
-
-Example: [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]
-
-You are given a target value to search. If found in the array return its index, otherwise return -1.
-
-You can assume there are no duplicates in the array and your algorithm's runtime complexity must be in the order of O(log n).
-
-Example:
-
-Input: nums = [4,5,6,7,0,1,2], target = 0, Output: 4
-
-Here is some boilerplate code and test cases to start with:
-
-"""
-def rotated_array_search(input_list, number):
+def rotated_array_search(nums, x):
     """
     Find the index by searching in a rotated sorted array
 
@@ -24,18 +7,35 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-    pass
+    low = 0
+    high = len(nums) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if nums[mid] == x:
+            return mid
+    # This section is to check if the pivot is on the right or left side of the array
+        if not (nums[low] <= nums[mid]) == (nums[low] <=x):
+            if nums[low] > x:
+                low = mid + 1
+            else:
+                high = mid - 1
+            continue
+        if nums[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
 
-def linear_search(input_list, number):
-    for index, element in enumerate(input_list):
-        if element == number:
+def linear_search(nums, x):
+    for index, element in enumerate(nums):
+        if element == x:
             return index
     return -1
 
 def test_function(test_case):
-    input_list = test_case[0]
-    number = test_case[1]
-    if linear_search(input_list, number) == rotated_array_search(input_list, number):
+    nums = test_case[0]
+    x = test_case[1]
+    if linear_search(nums, x) == rotated_array_search(nums, x):
         print("Pass")
     else:
         print("Fail")
