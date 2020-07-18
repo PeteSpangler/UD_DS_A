@@ -9,21 +9,24 @@ that would still be an O(n) solution but it will not count as single traversal.
 Here is some boilerplate code and test cases to start with:
 """
 def sort_012(nums):
-    rightpointer = (len(nums) - 1) # 2s pointer
-    leftpointer = 0 # 0s pointer
-    middlepointer = 0 # 1s pointer
+    next_pos_0 = 0 #pointer for 0s
+    next_pos_2 = len(nums) - 1 #pointer for 2s
 
-    while leftpointer <= rightpointer:
-        num = nums[leftpointer]
-        if num == 0:
-            nums[leftpointer], nums[middlepointer] = nums[middlepointer], nums[leftpointer]
-            leftpointer += 1
-            middlepointer += 1
-        if num == 2:
-            nums[rightpointer], nums [middlepointer] = nums[middlepointer], nums[rightpointer]
-            nums[rightpointer] -= 1
+    front_index = 0 #iterator
+
+    while front_index <= next_pos_2:
+        if nums[front_index] == 0:
+            nums[front_index] = nums[next_pos_0]
+            nums[next_pos_0] = 0
+            next_pos_0 += 1
+            front_index += 1
+        elif nums[front_index] == 2:           
+            nums[front_index] = nums[next_pos_2] 
+            nums[next_pos_2] = 2
+            next_pos_2 -= 1
         else:
-            middlepointer += 1 
+            front_index += 1
+    return nums
 
 def test_function(nums):
     sorted_array = sort_012(nums)
@@ -37,3 +40,6 @@ test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
 test_function([0,1,2])
+test_function([])
+test_function([0,2])
+test_function([2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,1,2,1,2,1,2,1,2,0,0,1,2,0,2,2,0,0,0,0])
