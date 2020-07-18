@@ -9,19 +9,12 @@ that would still be an O(n) solution but it will not count as single traversal.
 Here is some boilerplate code and test cases to start with:
 """
 def sort_012(nums):
-    """
-    Given an input array consisting on only 0, 1, and 2, sort the array in a single traversal.
-
-    Args:
-       input_list(list): List to be sorted
-    """
-
-    rightpointer = (len(nums)) - 1 # 2s pointer
+    rightpointer = (len(nums) - 1) # 2s pointer
     leftpointer = 0 # 0s pointer
     middlepointer = 0 # 1s pointer
 
-    while middlepointer <= rightpointer:
-        num = nums[middlepointer]
+    while leftpointer <= rightpointer:
+        num = nums[leftpointer]
         if num == 0:
             nums[leftpointer], nums[middlepointer] = nums[middlepointer], nums[leftpointer]
             leftpointer += 1
@@ -43,3 +36,4 @@ def test_function(nums):
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+test_function([0,1,2])

@@ -11,13 +11,17 @@ def get_min_max(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
-    if ints == []:
-        return None
+
         
-    max_num = ints[0]
-    min_num = ints[0]
+    # max_num = ints[0]
+    # min_num = ints[0]
     
+    # if ints == []:
+    #     return None
+
     for num in ints:
+        max_num = ints[0]
+        min_num = ints[0]
         if num < min_num:
             min_num = num
         if num > max_num:
