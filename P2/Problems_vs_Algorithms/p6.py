@@ -1,6 +1,7 @@
 """
 Max and Min in a Unsorted Array
-In this problem, we will look for smallest and largest integer from a list of unsorted integers. The code should run in O(n) time. Do not use Python's inbuilt functions to find min and max.
+In this problem, we will look for smallest and largest integer from a list of unsorted integers. 
+The code should run in O(n) time. Do not use Python's inbuilt functions to find min and max.
 
 Bonus Challenge: Is it possible to find the max and min in a single traversal?
 """
@@ -11,17 +12,13 @@ def get_min_max(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
+    if len(ints) == 0:
+        return None
 
-        
-    # max_num = ints[0]
-    # min_num = ints[0]
-    
-    # if ints == []:
-    #     return None
+    min_num = ints[0]
+    max_num = ints[0]
 
     for num in ints:
-        max_num = ints[0]
-        min_num = ints[0]
         if num < min_num:
             min_num = num
         if num > max_num:
