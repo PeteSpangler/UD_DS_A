@@ -23,6 +23,7 @@ def rearrange_digits(input_list):
     """
     if len(input_list) >= 1:
         return input_list
+        
     mid = len(input_list) // 2
     left = input_list[:mid]
     right = input_list[mid:]
@@ -58,6 +59,7 @@ def merge(left, right):
     merged += left[left_index:]
     merged += right[right_index:]
     return merged
+
 
 def test_function(test_case):
     output = rearrange_digits(test_case[0])
