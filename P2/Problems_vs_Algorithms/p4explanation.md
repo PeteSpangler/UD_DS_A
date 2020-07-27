@@ -1,0 +1,1 @@
+Using three pointers, one as the iterator, one for the 0s, and one for the 2s, and by swapping values as necessary, this is a one pass O(n) solution with constant space. The famous Dutch National Flag problem.  

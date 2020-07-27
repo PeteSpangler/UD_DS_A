@@ -21,20 +21,31 @@ def rearrange_digits(input_list):
     Returns:
        (int),(int): Two maximum sums
     """
-    if len(input_list) >= 1:
-        return input_list
-        
-    mid = len(input_list) // 2
-    left = input_list[:mid]
-    right = input_list[mid:]
-    left = rearrange_digits(left)
-    right = rearrange_digits(right)
-    return merge(left, right)
+    if len(input_list) == 1:
+        return [input_list[0], 0]
+#edge / sanity check above and below this line
+    if len(input_list) == 0:
+        return []
+
+    merged_list = mergesort(input_list) 
+    left_arr = merged_list[0::2] 
+    right_arr = merged_list[1::2] 
+#iterating over odd/even merged_list(s) into the two max sums by taking every other number 
+    left_arr_string = '' 
+    for num in left_arr: 
+        left_arr_string += str(num) 
+
+    right_arr_string = '' 
+    for num in right_arr: 
+        right_arr_string += str(num) 
+
+    return [int(left_arr_string), int(right_arr_string)]
     
 def mergesort(input_list):
-
+#this implementation comes from the mergesort chapter in the sorted algorithms chapter
     if len(input_list) <= 1:
         return input_list
+
     mid = len(input_list) // 2
     left = input_list[:mid]
     right = input_list[mid:]
@@ -50,7 +61,7 @@ def merge(left, right):
     right_index = 0
 
     while left_index < len(left) and right_index < len(right):
-        if left[left_index] > right[right_index]:
+        if left[left_index] < right[right_index]:
             merged.append(right[right_index])
             right_index += 1
         else:
@@ -69,5 +80,11 @@ def test_function(test_case):
     else:
         print("Fail")
 
-test_function([[1, 2, 3, 4, 5], [542, 31]])
-test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
+#Edge cases 
+test_function([[], []]) 
+test_function([[1], [1, 0]]) 
+#Normal cases 
+test_function([[1, 2, 3, 4, 5], [542, 31]]) 
+test_function([[4, 6, 2, 5, 9, 8], [964, 852]]) 
+test_function([[2, 3], [3, 2]]) 
+test_function([[5, 4, 2], [54, 2]]) 
