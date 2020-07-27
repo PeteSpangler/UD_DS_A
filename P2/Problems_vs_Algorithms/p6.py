@@ -33,23 +33,24 @@ l = [i for i in range(0, 10)]  # a list containing 0 - 9
 random.shuffle(l)
 
 print ("Pass" if ((0, 9) == get_min_max(l)) else "Fail")
-# Sorting usually requires O(n log n) time Can you come up with a O(n) algorithm (i.e., linear time)?
-l = [i for i in range(0, 10)]  # a list containing 0 -> 9
+
+l = [i for i in range(0, 10)]  
 random.shuffle(l)
 print("Pass" if ((0, 9) == get_min_max(l)) else "Fail")
 
-l = [i for i in range(-10, 10)]  # a list containing -10 -> 9
+l = [i for i in range(-10, 10)]  
 random.shuffle(l)
 print("Pass" if ((-10, 9) == get_min_max(l)) else "Fail")
 
-l = [i for i in range(0, 401)]  # a list containing 0 -> 400
+l = [i for i in range(0, 401)] 
 random.shuffle(l)
 print("Pass" if ((0, 400) == get_min_max(l)) else "Fail")
 
+#Edge Cases
 l = []  # an empty list
 print("Pass" if (None == get_min_max(l)) else "Fail")
 
 # Case 5
-l = [i for i in range(-23, -1)]  # a list containing -23 - -2
+l = [i for i in range(-23, -1)]  
 random.shuffle(l)
 print("Pass" if ((-23, -2) == get_min_max(l)) else "Fail")
