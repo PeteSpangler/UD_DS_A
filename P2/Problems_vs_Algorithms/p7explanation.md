@@ -1,0 +1,1 @@
+Similar to the Trie used in P5, the worst case  time complexity here are linked to the number of nodes/number of path_parts to insert/find. So that would be O(# of nodes * # of path_parts). Space complexity is worst case O(n) unless nodes share similar paths, which would reduce the space complexity marginially. 

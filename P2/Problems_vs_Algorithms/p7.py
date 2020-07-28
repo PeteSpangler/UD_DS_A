@@ -19,39 +19,32 @@ We can also simplify our RouteTrie a bit by excluding the suffixes method and th
 """
 # A RouteTrie will store our routes and their associated handlers
 class RouteTrie:
-    def __init__(self, route_handler):
-        # Initialize the trie with an root node and a handler, this is the root path or home page node
+    def __init__(self, handler):
         self.root = RouteTrieNode()
-        self.root.handler = root_handler
+        self.handler = handler
 
-    def insert(self, route, handler, current_node = None):
-        # Similar to our previous example you will want to recursively add nodes
-        # Make sure you assign the handler to only the leaf (deepest) node of this path
-        if not current_node:
-            current_node = self.root
-        
-        if len(route) == 0:
-            current_node.handler = handler
-        elif len(route) == 1:
-            current_node.insert(route[0])
-            current_node.children[route[0]].handler = handler
-        else:
-            current_node.insert(route[0])
-            self.insert(route[1:], handler, current_node.children[route[0]])
+    def insert(self, path_parts, handler):
+        current_node = self.root
+        for part in path_parts:
 
-    def find(self,route, current_node = None):
+            if part not in current_node.children:
+                current_node.children[part] = RouteTrieNode()
+            current_node = current_node.children[part]
+
+        current_node.handler = handler
+
+    def find(self, path_parts):
         # Starting at the root, navigate the Trie to find a match for this path
-        # Return the handler for a match, or None for no match
-        if not current_node:
-            current_node = self.root
-
-        if len(route) == 0:
-            return current_node.handler
-        else:
-            if route[0] in current_node.children:
-                return self.find(route[1:], current_node.chidlre[route[0]])
-            else:
+        # Return the handler for a match, or None for no match        
+        current_node = self.root
+        for part in path_parts:
+            if part not in current_node.children:
                 return None
+            current_node = current_node.children[part]
+
+        return current_node.handler
+
+
 # A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
 class RouteTrieNode:
     def __init__(self):
@@ -59,10 +52,10 @@ class RouteTrieNode:
         self.children = {}
         self.handler = None
 
-    def insert(self, route):
+    def insert(self, path_parts):
         # Insert the node as before
-        if route not in self.children:
-            self.children[route] = RouteTrieNode()
+        if path_parts not in self.children:
+            self.children[path_part] = RouteTrieNode()
 """
 Next we need to implement the actual Router. The router will initialize itself with a RouteTrie for holding routes and associated handlers. It should also support adding a handler by path and looking up a handler by path. All of these operations will be delegated to the RouteTrie.
 
@@ -74,17 +67,18 @@ More Bonus Points: Handle trailing slashes! A request for '/about' or '/about/' 
 """
 # The Router class will wrap the Trie and handle 
 class Router:
-    def __init__(self, root_handler, not_found_handler):
+    def __init__(self, handler, not_found_handler):
         # Create a new RouteTrie for holding our routes
         # You could also add a handler for 404 page not found responses as well!
-        self.route_trie = RouteTrie(root_handler)
+        self.root = RouteTrie(handler)
         self.not_found_handler = not_found_handler
 
     def add_handler(self, path, handler):
         # Add a handler for a path
         # You will need to split the path and pass the pass parts
         # as a list to the RouteTrie
-        self.route_trie.insert(self.split_path(path), handler)
+        path_parts = self.split_path(path)
+        self.root.insert(path_parts, handler)
 
     def lookup(self, path):
         # lookup path (by parts) and return the associated handler
@@ -92,19 +86,19 @@ class Router:
         # return the "not found" handler if you added one
         # bonus points if a path works with and without a trailing slash
         # e.g. /about and /about/ both return the /about handler
-        handler = self.route_trie.find(self.split_path(path))
-        return handler if handler else self.not_found_handler
+        if path == "/":
+            return self.root.handler
+        path_parts = self.split_path(path)
+        handler = self.root.find(path_parts)
+        return handler or self.not_found_handler
 
     def split_path(self, path):
         # you need to split the path into parts for 
         # both the add_handler and loopup functions,
         # so it should be placed in a function here
-        split_p = path.split('/')[1:]
-        if len(split_p) == 0:
-            return []
-        if split_p[-1] == "":
-            return split_p[:-1]
-        return split_p
+        return path.rstrip("/").split("/")
+
+
         
 """Test Cases"""
 # Here are some test cases and expected outputs you can use to test your implementation
@@ -112,6 +106,7 @@ class Router:
 # create the router and add a route
 router = Router("root handler", "not found handler") # remove the 'not found handler' if you did not implement this
 router.add_handler("/home/about", "about handler")  # add a route
+router.add_handler("/GOAT", "Michael Jordan") 
 
 # some lookups with the expected output
 print(router.lookup("/")) # should print 'root handler'
@@ -119,3 +114,5 @@ print(router.lookup("/home")) # should print 'not found handler' or None if you 
 print(router.lookup("/home/about")) # should print 'about handler'
 print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
 print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+print(router.lookup("/GOAT")) # should print "Michael Jordan"
+print(router.lookup("Michael Jordan")) #should print "not found handler"
