@@ -9,9 +9,8 @@ class TrieNode:
         ## Add a child node in this Trie
         if char not in self.children:
             self.children[char] = TrieNode()
- 
-    
-    def suffixes(self, suffix = ''):
+     
+    def suffixes(self, suffix = ""):
         ## Recursive function that collects the suffix for 
         ## all complete words below this point
         xes = []
@@ -41,7 +40,7 @@ class Trie:
     def find(self, prefix):
         ## Find the Trie node that represents this prefix
         current_node = self.root
-        
+
         for char in prefix:
             if char not in current_node.children:
                 return False
@@ -64,3 +63,11 @@ pref2 = MyTrie.find("an")
 print(pref2.suffixes())
 pref3 = MyTrie.find("f")
 print(pref3.suffixes())
+pref4 = MyTrie.find("")
+print(pref4.suffixes())
+
+"""
+Your solution is correct but one thing needs to be changed.
+When we do MyTrie.find("") your code brings the entire wordlist 
+as suffixes but here the result should be empty
+"""

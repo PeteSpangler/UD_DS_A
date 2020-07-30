@@ -1,1 +1,1 @@
-This is done in a single traversal and in O(n) time using linear search. There is no need to sort the list to find the minimum and maximum integer, a simple linear search comparing the values as the list is iterated fufills the stated problem statement. 
+This is done in a single traversal and in O(n) time using linear search. There is no need to sort the list to find the minimum and maximum integer, a simple linear search comparing the values as the list is iterated fufills the stated problem statement. Time complexity is O(n) and space complexity is O(1).

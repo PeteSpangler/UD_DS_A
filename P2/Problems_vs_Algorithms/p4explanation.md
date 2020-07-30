@@ -1,1 +1,1 @@
-Using three pointers, one as the iterator, one for the 0s, and one for the 2s, and by swapping values as necessary, this is a one pass O(n) solution with constant space. The famous Dutch National Flag problem.  
+To sort the given array of 0,1,2 in one pass, three pointers are used. A pointer as the iterator through the whole array, a pointer for the 0s, and a pointer for the 2s, and by swapping values of 0s and 2s as necessary, the 1s end up in the middle where they should be. This is a one pass solution (linear time complexity O(n)) with O(1) space complexity.
