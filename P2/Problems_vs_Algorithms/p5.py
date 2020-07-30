@@ -57,4 +57,10 @@ wordList = [
 ]
 for word in wordList:
     MyTrie.insert(word)
-
+#Tests
+pref = MyTrie.find("tr")
+print(pref.suffixes())
+pref2 = MyTrie.find("an")
+print(pref2.suffixes())
+pref3 = MyTrie.find("f")
+print(pref3.suffixes())
