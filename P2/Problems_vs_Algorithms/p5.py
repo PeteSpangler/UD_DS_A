@@ -40,12 +40,11 @@ class Trie:
     def find(self, prefix):
         ## Find the Trie node that represents this prefix
         current_node = self.root
-
         for char in prefix:
-            if char not in current_node.children:
-                return False
-            current_node = current_node.children[char]
-            
+            if char in current_node.children:
+                current_node = current_node.children[char]
+            else:
+                return None   
         return current_node
 
 MyTrie = Trie()
@@ -56,18 +55,19 @@ wordList = [
 ]
 for word in wordList:
     MyTrie.insert(word)
-#Tests
-pref = MyTrie.find("tr")
-print(pref.suffixes())
-pref2 = MyTrie.find("an")
-print(pref2.suffixes())
-pref3 = MyTrie.find("f")
-print(pref3.suffixes())
-pref4 = MyTrie.find("")
-print(pref4.suffixes())
 
-"""
-Your solution is correct but one thing needs to be changed.
-When we do MyTrie.find("") your code brings the entire wordlist 
-as suffixes but here the result should be empty
-"""
+#To avoid returing full wordlist when running tests
+def findit(prefix):
+    if prefix == "":
+        print([])
+    if prefix != "":
+        pnode = MyTrie.find(prefix)
+        if pnode:
+            print(pnode.suffixes())
+
+#Tests
+print(findit("tr"))
+print(findit("an"))
+print(findit("f"))
+print(findit(""))
+print(findit("fun"))
